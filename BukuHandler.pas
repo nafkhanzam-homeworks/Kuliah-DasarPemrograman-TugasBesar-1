@@ -1,0 +1,261 @@
+unit BukuHandler;
+
+interface
+	uses
+		Util, Database, UserHandler;
+
+	procedure kembalikan_buku; 
+	procedure cari;
+	procedure pinjam_buku;
+	procedure tambah_buku;
+	procedure tambah_jumlah_buku;
+	procedure riwayat;
+	procedure caritahunterbit;
+	procedure lapor_hilang;
+	procedure lihat_laporan;
+	procedure statistik;
+
+implementation
+	procedure writeBukuNotFound(id: integer);
+		begin
+			writeln('Buku dengan ID:', id, ' tidak ditemukan!');
+		end;
+	procedure kembalikan_buku;
+		var
+			k: Kembali;
+			b: Buku;
+			p: Pinjam;
+			s: string;
+			i: integer;
+		begin
+			k.username := loggedUser.username;
+			write('Masukkan id buku yang dikembalikan: ');
+			readln(k.id);
+			b := findBuku(k.id);
+			if isBukuNull(b) then
+				writeBukuNotFound(k.id)
+			else begin
+				p := findPinjam(k.id, k.username);
+				if isPinjamNull(p) then
+					writeln(k.username, ' tidak pernah meminjam buku tersebut!')
+				else begin
+					writeln('Data peminjaman:');
+					writeln('Username: ', k.username);
+					writeln('Judul buku: ', b.judul);
+					writeln('Tanggal peminjaman: ', tanggalToString(p.tanggalPinjam));
+					writeln('Tanggal batas pengembalian: ', tanggalToString(p.tanggalKembali));
+					writeln;
+					write('Masukkan tanggal hari ini: ');
+					readln(s);
+					k.tanggal := getTanggal(s);
+					i := hitungHari(p.tanggalKembali, k.tanggal);
+					if (i > 0) then begin
+						writeln('Anda terlambat mengembalikan buku.');
+						writeln('Anda terkena denda ', 2000*i, '.');
+					end else begin
+						writeln('Terima kasih sudah meminjam.');
+					end;
+					addKembali(k);
+					p.status := true;
+					b.jumlah += 1;
+				end;
+			end;
+		end;
+	procedure cari;
+		var
+			s: string;
+			b: Buku;
+			res: DataBuku;
+		begin
+			write('Masukkan kategori: ');
+			readln(s);
+			while not(isKategoriValid(s)) do begin
+				writeln('Kategori ', s, ' tidak valid');
+				write('Kategori: ', getKategoriString);
+				write('Masukkan kategori: ');
+				readln(s);
+			end;
+			res.length := 0;
+			for b in bukuData.arr do
+				if (b.kategori = s) then begin
+					res.length += 1;
+					res.arr[res.length] := b;
+				end;
+			writeln;
+			if res.length > 0 then begin
+				sortBukuData(res);
+				writeln('Hasil pencarian:');
+				for b in res.arr do
+					writeln(b.id, ' | ', b.judul, ' | ', b.author);
+			end else
+				writeln('Tidak ada buku dalam kategori ini.')
+		end;
+	procedure pinjam_buku;
+		var
+			p: Pinjam;
+			b: Buku;
+			s: string;
+		begin
+			write('Masukkan id buku yang ingin dipinjam: ');
+			readln(p.id);
+			b := findBuku(p.id);
+			if isBukuNull(b) then
+				writeBukuNotFound(p.id)
+			else begin
+				write('Masukkan tanggal hari ini: ');
+				readln(s);
+				if (b.jumlah > 0) then begin
+					p.tanggalPinjam := getTanggal(s);
+					p.tanggalKembali := get1WeekAfter(p.tanggalPinjam);
+					b.jumlah -= 1;
+					writeln('Buku ', b.judul, ' berhasil dipinjam!');
+					writeln('Tersisa ', b.jumlah, ' buku ', b.judul, '.');
+					writeln('Terima kasih sudah meminjam.');
+					p.status := false;
+					p.username := loggedUser.username;
+					addPinjam(p);
+				end else begin
+					writeln('Buku ', b.judul, ' sedang habis!');
+					writeln('Coba lain kali');
+				end;
+			end;
+		end;
+	procedure tambah_buku;
+		var
+			b: Buku;
+		begin
+			writeln('Masukkan Informasi buku yang ditambahkan:');
+			write('Masukkan id buku: ');
+			readln(b.id);
+			write('Masukkan judul buku: ');
+			readln(b.judul);
+			write('Masukkan pengarang buku: ');
+			readln(b.author);
+			write('Masukkan jumlah buku: ');
+			readln(b.jumlah);
+			write('Masukkan tahun terbit buku: ');
+			readln(b.tahun);
+			write('Masukkan kategori buku: ');
+			readln(b.kategori);
+			while not(isKategoriValid(b.kategori)) do begin
+				writeln('Kategori ', b.kategori, ' tidak valid');
+				write('Kategori: ', getKategoriString);
+				write('Masukkan kategori buku: ');
+				readln(b.kategori);
+			end;
+			addBuku(b);
+			writeln;
+			writeln('Buku berhasil ditambahkan ke dalam sistem!');
+		end;
+	procedure tambah_jumlah_buku;
+		var
+			i: integer;
+			b: Buku;
+		begin
+			write('Masukkan ID Buku: ');
+			readln(i);
+			b := findBuku(i);
+			if isBukuNull(b) then
+				writeBukuNotFound(i)
+			else begin
+				write('Masukkan jumlah buku yang ditambahkan: ');
+				readln(i);
+				b.jumlah += i;
+				writeln('Pembaharuan jumlah buku berhasil dilakukan, total buku ', b.judul, ' di perpustakaan menjadi ', b.jumlah);
+			end;
+		end;
+	procedure riwayat;
+		var
+			s: string;
+			p: Pinjam;
+		begin
+			write('Masukkan username pengunjung: ');
+			readln(s);
+			writeln('Riwayat:');
+			for p in pinjamData.arr do
+				if (p.username = s) and not(p.status) then
+					writeln(tanggalToString(p.tanggalKembali), ' | ', p.id, ' | ', findBuku(p.id).judul);
+		end;
+	procedure caritahunterbit;
+		var
+			thn, cnt: integer;
+			kat: string;
+			b: Buku;
+		begin
+			write('Masukkan tahun: ');
+			readln(thn);
+			write('Masukkan kategori: ');
+			readln(kat);
+			writeln('Buku yang terbit ', kat, ' ', thn, ':');
+			for b in bukuData.arr do begin
+				if ((kat = '=') and (b.tahun = thn)) or ((kat = '<') and (b.tahun < thn)) or
+					 ((kat = '<=') and (b.tahun <= thn)) or ((kat = '>') and (b.tahun > thn)) or
+					 ((kat = '>=') and (b.tahun >= thn)) then begin
+					writeln(b.id, ' | ', b.judul, ' | ', b.author);
+					cnt += 1;
+				end;
+			end;
+			if (cnt = 0) then
+				writeln('Tidak ada buku dalam kategori ini.');
+		end;
+	procedure lapor_hilang;
+		var
+			l: Laporan;
+			s: string;
+		begin
+			write('Masukkan id buku : ');
+			readln(l.id);
+			if isBukuNull(findBuku(l.id)) then
+				writeBukuNotFound(l.id)
+			else begin
+				write('Masukkan judul buku : ');
+				readln(s); // temporary dummy
+				write('Masukkan tanggal pelaporan : ');
+				readln(s);
+				l.tanggal := getTanggal(s);
+				l.username := loggedUser.username;
+				writeln('');
+				writeln('Laporan berhasil diterima.');
+				addLaporan(l);
+			end;
+		end;
+	procedure lihat_laporan;
+		var
+			l: Laporan;
+		begin
+			writeln('Buku yang hilang :');
+			for l in laporanData.arr do
+				writeln(l.id, ' | ', findBuku(l.id).judul, ' | ', tanggalToString(l.tanggal));
+		end;
+	procedure statistik;
+		var
+			adminCnt, pengunjungCnt, tot, i: integer;
+			u: User;
+			b: Buku;
+			cntArr: array [1..length(validKategori)] of integer;
+		begin
+			adminCnt := 0;
+			pengunjungCnt := 0;
+			for i := 1 to length(validKategori) do
+				cntArr[i] := 0;
+			writeln('Pengguna:');
+			for u in userData.arr do
+				if u.role = 'Admin' then
+					adminCnt += 1
+				else if u.role = 'Pengunjung' then
+					pengunjungCnt += 1;
+			writeln('Admin | ', adminCnt);
+			writeln('Pengunjung | ', pengunjungCnt);
+			writeln('Total | ', adminCnt + pengunjungCnt);
+			writeln;
+			writeln('Buku:');
+			for b in bukuData.arr do
+				cntArr[getKategoriID(b.kategori)] += 1;
+			tot := 0;
+			for i := 1 to length(validKategori) do begin
+				writeln(validKategori[i], ' | ', cntArr[i]);
+				tot += cntArr[i];
+			end;
+			writeln('Total | ', tot);
+		end;
+end.
