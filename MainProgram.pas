@@ -66,12 +66,37 @@ procedure exit;
 	end;
 procedure help;
 	begin
-		writeln('this is help');
+		writeln(' ');
+		writeln('Untuk memilih fitur dalam program ini, pengguna hanya perlu memasukkan salah satu input di bawah ini: ');
+		writeln(' ');
+		writeln('--- MENU HANYA UNTUK ADMIN ---');
+		writeln('register : Menu untuk mendaftarkan user pertama kali (hanya boleh dilakukan oleh admin)');
+		writeln('lihat_laporan : Menu untuk melihat laporan buku yang hilang.');
+		writeln('tambah_buku : Menu untuk menambah buku baru ke sistem.');
+		writeln('tambah_jumlah_buku : Menu untuk menambahkan jumlah buku ke sistem.');
+		writeln('riwayat : Menu untuk menampilkan riwayat peminjaman buku.');
+		writeln('statistik : Menu untuk melihat statistik yang berkaitan dengan pengguna dan buku.');
+		writeln('cari_anggota : Menu untuk mencari data diri dari anggota perpustakaan.');
+		writeln(' ');
+		writeln('--- MENU UMUM---');
+		writeln('login : Menu untuk mengakses program dengan memasukkan identitas dari user pengguna dan kata sandi guna mendapatkan hak akses.');
+		writeln('cari : Menu untuk mencari buku berdasarkan kategori (kategori hanya ada 5, yaitu sastra, sains, manga, sejarah, dan programming).');
+		writeln('caritahunterbit : Menu untuk mencari buku berdasarkan tahun terbit (Pengguna program akan diminta untuk memasukkan input tahun dan keterangan simbol).');
+		writeln('pinjam_buku : Menu untuk meminjam buku (Hanya bisa dilakukan setelah login).');
+		writeln('kembalikan _buku : Menu untuk mengembalikan buku (Hanya bisa dilakukan setelah login).');
+		writeln('lapor_hilang : Menu untuk melaporkan buku yang hilang.');
+		writeln('load : Menu untuk load data.');
+		writeln('save : Menu untuk melakukan penyimpanan data.');
+		writeln('exit : Menu untuk keluar dari program.');
 	end;
 
 begin
 	init;
+	writeln('Selamat datang di Program Perpustakaan!');
+	writeln('Silakan load data terlebih dahulu.');
 	load;
+	writeln('Silakan langsung input fitur yang akan dipakai.');
+	writeln('(Jika bingung, tulis "help")');
 	while running do begin
 		updateRole;
 		readln(cmd);
