@@ -56,13 +56,14 @@ implementation
 						writeln('Terima kasih sudah meminjam.');
 					end;
 					addKembali(k);
-					p.status := true;
-					b.jumlah += 1;
+					setPinjamStatus(p.username, p.id, true);
+					addBukuCount(p.id, 1);
 				end;
 			end;
 		end;
 	procedure cari;
 		var
+			i: integer;
 			s: string;
 			b: Buku;
 			res: DataBuku;
@@ -76,11 +77,13 @@ implementation
 				readln(s);
 			end;
 			res.length := 0;
-			for b in bukuData.arr do
+			for i := 1 to bukuData.length do begin
+				b := bukuData.arr[i];
 				if (b.kategori = s) then begin
 					res.length += 1;
 					res.arr[res.length] := b;
 				end;
+			end;
 			writeln;
 			if res.length > 0 then begin
 				sortBukuData(res);
@@ -107,9 +110,9 @@ implementation
 				if (b.jumlah > 0) then begin
 					p.tanggalPinjam := getTanggal(s);
 					p.tanggalKembali := get1WeekAfter(p.tanggalPinjam);
-					b.jumlah -= 1;
+					addBukuCount(p.id, -1);
 					writeln('Buku ', b.judul, ' berhasil dipinjam!');
-					writeln('Tersisa ', b.jumlah, ' buku ', b.judul, '.');
+					writeln('Tersisa ', b.jumlah-1, ' buku ', b.judul, '.');
 					writeln('Terima kasih sudah meminjam.');
 					p.status := false;
 					p.username := loggedUser.username;
@@ -160,25 +163,28 @@ implementation
 			else begin
 				write('Masukkan jumlah buku yang ditambahkan: ');
 				readln(i);
-				b.jumlah += i;
-				writeln('Pembaharuan jumlah buku berhasil dilakukan, total buku ', b.judul, ' di perpustakaan menjadi ', b.jumlah);
+				addBukuCount(b.id, i);
+				writeln('Pembaharuan jumlah buku berhasil dilakukan, total buku ', b.judul, ' di perpustakaan menjadi ', b.jumlah+i, '.');
 			end;
 		end;
 	procedure riwayat;
 		var
+			i: integer;
 			s: string;
 			p: Pinjam;
 		begin
 			write('Masukkan username pengunjung: ');
 			readln(s);
 			writeln('Riwayat:');
-			for p in pinjamData.arr do
+			for i := 1 to pinjamData.length do begin
+				p := pinjamData.arr[i];
 				if (p.username = s) and not(p.status) then
 					writeln(tanggalToString(p.tanggalKembali), ' | ', p.id, ' | ', findBuku(p.id).judul);
+			end;
 		end;
 	procedure caritahunterbit;
 		var
-			thn, cnt: integer;
+			thn, cnt, i: integer;
 			kat: string;
 			b: Buku;
 		begin
@@ -187,7 +193,8 @@ implementation
 			write('Masukkan kategori: ');
 			readln(kat);
 			writeln('Buku yang terbit ', kat, ' ', thn, ':');
-			for b in bukuData.arr do begin
+			for i := 1 to bukuData.length do begin
+				b := bukuData.arr[i];
 				if ((kat = '=') and (b.tahun = thn)) or ((kat = '<') and (b.tahun < thn)) or
 					 ((kat = '<=') and (b.tahun <= thn)) or ((kat = '>') and (b.tahun > thn)) or
 					 ((kat = '>=') and (b.tahun >= thn)) then begin
@@ -222,10 +229,13 @@ implementation
 	procedure lihat_laporan;
 		var
 			l: Laporan;
+			i: integer;
 		begin
 			writeln('Buku yang hilang :');
-			for l in laporanData.arr do
+			for i := 1 to laporanData.length do begin
+				l := laporanData.arr[i];
 				writeln(l.id, ' | ', findBuku(l.id).judul, ' | ', tanggalToString(l.tanggal));
+			end;
 		end;
 	procedure statistik;
 		var
@@ -239,18 +249,20 @@ implementation
 			for i := 1 to length(validKategori) do
 				cntArr[i] := 0;
 			writeln('Pengguna:');
-			for u in userData.arr do
+			for i := 1 to userData.length do begin
+				u := userData.arr[i];
 				if u.role = 'Admin' then
 					adminCnt += 1
 				else if u.role = 'Pengunjung' then
 					pengunjungCnt += 1;
+			end;
 			writeln('Admin | ', adminCnt);
 			writeln('Pengunjung | ', pengunjungCnt);
 			writeln('Total | ', adminCnt + pengunjungCnt);
 			writeln;
 			writeln('Buku:');
-			for b in bukuData.arr do
-				cntArr[getKategoriID(b.kategori)] += 1;
+			for i := 1 to bukuData.length do
+				cntArr[getKategoriID(bukuData.arr[i].kategori)] += 1;
 			tot := 0;
 			for i := 1 to length(validKategori) do begin
 				writeln(validKategori[i], ' | ', cntArr[i]);

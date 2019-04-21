@@ -73,6 +73,8 @@ interface
 	function isUserNull(u: User): boolean;
 	function isBukuNull(b: Buku): boolean;
 	function isPinjamNull(p: Pinjam): boolean;
+	procedure addBukuCount(id, cnt: integer);
+	procedure setPinjamStatus(username: string; id: integer; b: boolean);
 
 implementation
 	procedure addBuku(o: Buku);
@@ -111,5 +113,25 @@ implementation
 	function isPinjamNull(p: Pinjam): boolean;
 		begin
 			isPinjamNull := (p.username = '') and (p.id = 0);
+		end;
+	procedure addBukuCount(id, cnt: integer);
+		var
+			i: integer;
+		begin
+			for i := 1 to bukuData.length do
+				if (bukuData.arr[i].id = id) then begin
+					bukuData.arr[i].jumlah += cnt;
+					break;
+				end;
+		end;
+	procedure setPinjamStatus(username: string; id: integer; b: boolean);
+		var
+			i: integer;
+		begin
+			for i := 1 to pinjamData.length do
+				if (pinjamData.arr[i].username = username) and (pinjamData.arr[i].id = id) then begin
+					pinjamData.arr[i].status := b;
+					break;
+				end;
 		end;
 end.

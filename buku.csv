@@ -1,0 +1,51 @@
+ID_Buku,Judul_Buku,Author,Jumlah_Buku,Tahun_Penerbit,Kategori
+1,Pemrograman Database dengan Delphi7 Menggunakan Access ADO,Abdul Kadir,10,2004,programming
+2,ASnimasi Pendidikan Menggunakan Flash,Priyanto Hidayatullah,17,2011,programming
+3,Mudah dan Cepat Membuat Program Skripsi dengan VB 2012,Ir. Yuniar Supardi,5,2012,programming
+4,the C++ Programming Language third edition,Bjarne Stroustrup,29,1997,programming
+5,Seluk Beluk Database Relasional (Edisi Kedua),Mark Whitehorn dan Bill Marklyn,13,2003,programming
+6,Membangun Media Ajar Online Untuk Orang Awam,Rulianto Kurniawan,28,2009,programming
+7,Mastering Delphi 5,Marco Cantu,4,1999,programming
+8,Manajemen Database dengan Microsoft Visual Basic Versi 6.0,M Agus,12,2001,programming
+9,Algoritma & Teknik Pemrograman,Budi Sutejo,9,2000,programming
+10,Computers and Programming,Francis Scheid,10,1983,programming
+11,Student Hidjo,Mas Marco Kartodikromo,15,1919,sastra
+12,Azab dan Sengsara,Merari Siregar,4,1920,sastra
+13,Hikayat Kadiroen,Semaoen,9,1920,sastra
+14,Sitti Nurbaya (Kasih Tak Sampai),Marah Rusli,15,1922,sastra
+15,Tanah Air,Muhammad Yamin,2,1922,sastra
+16,Salah Asuhan,Abdoel Moeis,16,1928,sastra
+17,Melawat Ke Barat,Adinegoro,5,1930,sastra
+18,Kalau Tak Untung,Selasih,17,1933,sastra
+19,Kenang-Kenangan,Dokter Soetomo,20,1934,sastra
+20,Lajar Terkembang,Sutan Takdir Alisjahbana,20,1936,sastra
+21,A Brief History of Time,Stephen Hawking,12,1988,sains
+22,A Personal Anthology,Jorge Luis Borges,5,1967,sains
+23,Artificial Life,Steven Levy,8,1992,sains
+24,At Home in the Universe,John Wheeler,7,1994,sains
+25,Chance and Chaos,David Ruelle,9,1991,sains
+26,Chaos: Making a New Science,James Glieck,13,1987,sains
+27,Complexity,Roger Lewin,2,1992,sains
+28,Consciousness Explained,Daniel Dennet,10,1991,sains
+29,Popper Selections,Karl Popper,11,1985,sains
+30,The End of Science? Attack and Defense,Richard Q Selve,18,1992,sains
+31,One Piece,Eichiiro Oda,10,1999,manga
+32,Naruto,Masashi Kishimoto,20,1999,manga
+33,Bleach,Tite Kubo,9,2000,manga
+34,Fairy Tail,Hiro Mashima,19,1995,manga
+35,Death Note,Tsugumi Ohba dan Takeshi Obata,8,2002,manga
+36, Detective Conan,Gosho Aoyama,18,2007,manga
+37,Hunter X Hunter,Yoshihiro Togashi,5,2001,manga
+38,Full Metal Alchemist,Hiromu Arakawa,6,1995,manga
+39,Belzeebub,Ryuhei Tamura,11,1990,manga
+40,Inuyasha,Rumiko Takahashi,16,1998,manga
+41,Sejarah dan Peradaban Islam,Badri Yatim,5,1998,sejarah
+42,Pengantar Ilmu Antropologi,Koentjaraningrat,12,1990,sejarah
+43,Khazanah Peradaban Islam,Dr. Musthafa Husni,19,2002,sejarah
+44,Sosiologi dengan Pendekatan Pribumi,James M.Heslen,11,2007,sejarah
+45,Metodologi Sejarah,Kuntowijoyo,4,1994,sejarah
+46,Sejarah Peradaban Islam,Dr. Jaih Mubarok M.Ag,17,2004,sejarah
+47,Sejarah Islam Klasik,Prof. Dr. Hj. Musyrifah Susanto,3,2003,sejarah
+48,Sejarah Kebudayaan Islam di Indonesia,A. Hasjmy,15,1990,sejarah
+49,Paradigma Kebudayaan Islam,Faisal Ismail,23,1993,sejarah
+50,The World Of Islamic Civilization,Moh. Nur Hakim,16,2001,sejarah

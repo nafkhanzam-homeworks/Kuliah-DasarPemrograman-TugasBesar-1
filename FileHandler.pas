@@ -36,7 +36,7 @@ implementation
 			// readln(namaFileBuku);
 			namaFileBuku := 'buku.csv';
 			assign(fileBuku, namaFileBuku);
-			
+
 			write('Masukkan nama File User: ');
 			// readln(namaFileUser);
 			namaFileUser := 'user.csv';
@@ -68,6 +68,8 @@ implementation
 			for i := 1 to bukuData.length do begin
 				b := bukuData.arr[i];
 				writeln(fileBuku, b.id, ',', toCSV(b.judul), ',', toCSV(b.author), ',', b.jumlah, ',', b.tahun, ',', toCSV(b.kategori));
+				if (b.id = 51) then
+					writeln('jumlah:', b.jumlah);
 			end;
 			close(fileBuku);
 

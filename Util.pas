@@ -22,7 +22,6 @@ interface
 	function isAdmin(u: User): boolean;
 	function columnCount(s: string): integer;
 	function getKategoriString: string;
-	procedure debug;
 
 implementation
 	function hashCode(s: string): int64;
@@ -339,10 +338,5 @@ implementation
 		begin
 			writeln('Buku dengan ID: ', id, ' tidak ditemukan');
 		end;
-	procedure debug;
-		begin
-			writeln;
-			writeln('DEBUG HERE!!');
-			writeln;
-		end;
+	
 end.

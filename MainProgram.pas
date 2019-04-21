@@ -30,7 +30,7 @@ procedure updateRole;
 	end;
 function checkCmd: boolean;
 	var
-		s, s2: string;
+		s: string;
 	begin
 		checkCmd := true;
 		if (role < 2) then
@@ -39,14 +39,15 @@ function checkCmd: boolean;
 					checkCmd := false;
 					writeln('Command tersebut hanya untuk admin!');
 					break;
-				end
-		else if (role < 1) then
-			for s2 in userCmds do
-				if (s2 = cmd) then begin
+				end;
+		if (role < 1) then
+			for s in userCmds do begin
+				if (s = cmd) then begin
 					checkCmd := false;
 					writeln('Anda harus login terlebih dahulu!');
 					break;
 				end;
+			end;
 	end;
 procedure logout;
 	begin
