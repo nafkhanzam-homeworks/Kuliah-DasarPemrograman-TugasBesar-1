@@ -9,16 +9,6 @@ var
 	cmd: string;
 	adminCmds: array [1..7] of string = ('register', 'lihat_laporan', 'tambah_buku', 'tambah_jumlah_buku', 'riwayat', 'statistik', 'cari_anggota');
 	userCmds: array [1..5] of string = ('caritahunterbit', 'pinjam_buku', 'kembalikan_buku', 'lapor_hilang', 'logout');
-procedure init;
-	begin
-		userData.length := 0;
-		bukuData.length := 0;
-		pinjamData.length := 0;
-		kembaliData.length := 0;
-		laporanData.length := 0;
-		role := 0;
-		running := true;
-	end;
 procedure updateRole;
 	begin
 		if loggedUser.role = ROLE_ADMIN then
@@ -91,7 +81,7 @@ procedure help;
 	end;
 
 begin
-	init;
+	running := true;
 	writeln('Selamat datang di Program Perpustakaan!');
 	writeln('Silakan load data terlebih dahulu.');
 	load;
