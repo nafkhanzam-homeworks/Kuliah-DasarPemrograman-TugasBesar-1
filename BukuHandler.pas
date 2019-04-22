@@ -16,10 +16,13 @@ interface
 	procedure statistik;
 
 implementation
+	// Prosedur writeBukuNotFound memberitahu pengguna bahwa id buku tidak ada
 	procedure writeBukuNotFound(id: integer);
 		begin
-			writeln('Buku dengan ID:', id, ' tidak ditemukan!');
+			writeln('Buku dengan ID: ', id, ' tidak ditemukan');
 		end;
+
+	// Prosedur kembalikan_buku digunakan untuk command kembalikan_buku
 	procedure kembalikan_buku;
 		var
 			k: Kembali;
@@ -62,6 +65,8 @@ implementation
 				end;
 			end;
 		end;
+
+	// Prosedur cari digunakan untuk command cari
 	procedure cari;
 		var
 			i: integer;
@@ -96,6 +101,8 @@ implementation
 			end else
 				writeln('Tidak ada buku dalam kategori ini.')
 		end;
+
+	// Prosedur pinjam_buku digunakan untuk command pinjam_buku
 	procedure pinjam_buku;
 		var
 			p: Pinjam;
@@ -127,6 +134,8 @@ implementation
 				end;
 			end;
 		end;
+
+	// Prosedur tambah_buku digunakan untuk command tambah_buku
 	procedure tambah_buku;
 		var
 			b: Buku;
@@ -154,6 +163,8 @@ implementation
 			writeln;
 			writeln('Buku berhasil ditambahkan ke dalam sistem!');
 		end;
+
+	// Prosedur tambah_jumlah_buku digunakan untuk command tambah_jumlah_buku
 	procedure tambah_jumlah_buku;
 		var
 			i: integer;
@@ -172,6 +183,8 @@ implementation
 				writeln('Pembaharuan jumlah buku berhasil dilakukan, total buku ', b.judul, ' di perpustakaan menjadi ', b.jumlah+i, '.');
 			end;
 		end;
+
+	// Prosedur riwayat digunakan untuk command riwayat
 	procedure riwayat;
 		var
 			i: integer;
@@ -187,6 +200,8 @@ implementation
 					writeln(tanggalToString(p.tanggalKembali), ' | ', p.id, ' | ', findBuku(p.id).judul);
 			end;
 		end;
+
+	// Prosedur caritahunterbit digunakan untuk command caritahunterbit
 	procedure caritahunterbit;
 		var
 			thn, cnt, i: integer;
@@ -210,6 +225,8 @@ implementation
 			if (cnt = 0) then
 				writeln('Tidak ada buku dalam kategori ini.');
 		end;
+
+	// Prosedur lapor_hilang digunakan untuk command lapor_hilang
 	procedure lapor_hilang;
 		var
 			l: Laporan;
@@ -231,6 +248,8 @@ implementation
 				addLaporan(l);
 			end;
 		end;
+
+	// Prosedur lihat_laporan digunakan untuk command lihat_laporan
 	procedure lihat_laporan;
 		var
 			l: Laporan;
@@ -242,6 +261,8 @@ implementation
 				writeln(l.id, ' | ', findBuku(l.id).judul, ' | ', tanggalToString(l.tanggal));
 			end;
 		end;
+
+	// Prosedur statistik digunakan untuk command statistik
 	procedure statistik;
 		var
 			adminCnt, pengunjungCnt, tot, i: integer;

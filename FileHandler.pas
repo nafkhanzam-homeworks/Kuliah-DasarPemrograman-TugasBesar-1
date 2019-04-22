@@ -4,14 +4,21 @@ interface
 	uses
 		Util, Database;
 	const
+		// Header data file csv buku
 		BUKU_HEADER = 'ID_Buku,Judul_Buku,Author,Jumlah_Buku,Tahun_Penerbit,Kategori';
+		// Header data file csv pengguna
 		USER_HEADER = 'Nama,Alamat,Username,Password,Role';
+		// Header data file csv peminjaman buku
 		PINJAM_HEADER = 'Username,ID_Buku,Tanggal_Peminjaman,Tanggal_Batas_Pengembalian,Status_Pengembalian';
+		// Header data file csv pengembalian buku
 		KEMBALI_HEADER = 'Username,ID_Buku,Tanggal_Pengembalian';
+		// Header data file csv laporan kehilangan
 		LAPORAN_HEADER = 'Username,ID_Buku_Hilang,Tanggal_Laporan';
 
 	type
+		// Type array berisi string dari index 1 sampai NMAX
 		StringArray = array [1..NMAX] of string;
+		// Type array berisi StringArray dari index 1 sampai NMAX
 		Table = record
 			arr: array [1..NMAX] of StringArray;
 			row, col: integer;
@@ -30,6 +37,7 @@ interface
 	procedure load;
 
 implementation
+	// Prosedur inputFiles digunakan untuk mengassign semua TextFile untuk dibaca/ditulis
 	procedure inputFiles;
 		begin
 			write('Masukkan nama File Buku: ');
@@ -57,6 +65,8 @@ implementation
 			// namaFileLaporan := 'laporan.csv';
 			assign(fileLaporan, namaFileLaporan);
 		end;
+
+	// Prosedur save digunakan untuk command save
 	procedure save;
 		var
 			i: integer;
@@ -107,6 +117,8 @@ implementation
 
 			writeln('Data berhasil disimpan!');
 		end;
+
+	// Prosedur addRow digunakan untuk menambahkan string ke dalam row baru
 	procedure addRow(s: string);
 		var
 			col: integer;
@@ -125,6 +137,8 @@ implementation
 				else
 					t.arr[t.row][col] += c;
 		end;
+
+	// Prosedur readData membaca TextFile dengan format csv dengan kolom tertentu kedalam table t
 	procedure readData(var f: TextFile; col: integer);
 		var
 			line: string;
@@ -144,6 +158,8 @@ implementation
 				for j := 1 to t.col do
 					t.arr[i][j] := fromCSV(t.arr[i][j]);
 		end;
+
+	// Prosedur load digunakan untuk command load
 	procedure load;
 		var
 			i: integer;

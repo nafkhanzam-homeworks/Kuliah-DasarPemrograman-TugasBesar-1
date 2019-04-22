@@ -10,6 +10,7 @@ interface
 	procedure cari_anggota;
 
 implementation
+	// Prosedur login digunakan untuk command login
 	procedure login;
 		var
 			username, password: string;
@@ -28,6 +29,8 @@ implementation
 				loggedUser := u;
 			end;
 		end;
+
+	// Prosedur register digunakan untuk command register
 	procedure register;
 		var 
 			password: string;
@@ -46,6 +49,8 @@ implementation
 			addUser(res);
 			writeln('Pengunjung ', res.nama, ' berhasil terdaftar sebagai user.');
 		end;
+
+	// Prosedur cari_anggota digunakan untuk command cari_anggota
 	procedure cari_anggota;
 		var
 			s: string;

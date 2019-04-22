@@ -380,10 +380,4 @@ implementation
 				getKategoriString += ', ' + validKategori[i];
 		end;
 
-	// Prosedur writeBukuNotFound memberitahu pengguna bahwa id buku tidak ada
-	procedure writeBukuNotFound(id: integer);
-		begin
-			writeln('Buku dengan ID: ', id, ' tidak ditemukan');
-		end;
-	
 end.
