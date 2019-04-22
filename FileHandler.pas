@@ -33,28 +33,28 @@ implementation
 	procedure inputFiles;
 		begin
 			write('Masukkan nama File Buku: ');
-			// readln(namaFileBuku);
-			namaFileBuku := 'buku.csv';
+			readln(namaFileBuku);
+			// namaFileBuku := 'buku.csv';
 			assign(fileBuku, namaFileBuku);
 
 			write('Masukkan nama File User: ');
-			// readln(namaFileUser);
-			namaFileUser := 'user.csv';
+			readln(namaFileUser);
+			// namaFileUser := 'user.csv';
 			assign(fileUser, namaFileUser);
 			
 			write('Masukkan nama File Peminjaman: ');
-			// readln(namaFilePinjam);
-			namaFilePinjam := 'pinjam.csv';
+			readln(namaFilePinjam);
+			// namaFilePinjam := 'pinjam.csv';
 			assign(filePinjam, namaFilePinjam);
 			
 			write('Masukkan nama File Pengembalian: ');
-			// readln(namaFileKembali);
-			namaFileKembali := 'kembali.csv';
+			readln(namaFileKembali);
+			// namaFileKembali := 'kembali.csv';
 			assign(fileKembali, namaFileKembali);
 			
 			write('Masukkan nama File Buku Laporan: ');
-			// readln(namaFileLaporan);
-			namaFileLaporan := 'laporan.csv';
+			readln(namaFileLaporan);
+			// namaFileLaporan := 'laporan.csv';
 			assign(fileLaporan, namaFileLaporan);
 		end;
 	procedure save;

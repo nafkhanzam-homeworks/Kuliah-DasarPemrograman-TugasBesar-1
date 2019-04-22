@@ -28,6 +28,7 @@ implementation
 			s: string;
 			i: integer;
 		begin
+			b := bukuNul;
 			k.username := loggedUser.username;
 			write('Masukkan id buku yang dikembalikan: ');
 			readln(k.id);
@@ -101,6 +102,7 @@ implementation
 			b: Buku;
 			s: string;
 		begin
+			b := bukuNul;
 			write('Masukkan id buku yang ingin dipinjam: ');
 			readln(p.id);
 			b := findBuku(p.id);
@@ -157,6 +159,7 @@ implementation
 			i: integer;
 			b: Buku;
 		begin
+			b := bukuNul;
 			write('Masukkan ID Buku: ');
 			readln(i);
 			b := findBuku(i);

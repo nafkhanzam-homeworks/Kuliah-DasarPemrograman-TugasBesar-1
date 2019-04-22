@@ -2,7 +2,7 @@ unit Database;
 
 interface
 	const
-		NMAX = 100;
+		NMAX = 1000;
 		ROLE_PENGUNJUNG = 'Pengunjung';
 		ROLE_ADMIN = 'Admin';
 

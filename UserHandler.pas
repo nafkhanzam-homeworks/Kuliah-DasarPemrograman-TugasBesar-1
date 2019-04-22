@@ -15,6 +15,7 @@ implementation
 			username, password: string;
 			u: User;
 		begin
+			u := userNul;
 			write('Masukkan username: ');
 			readln(username);
 			write('Masukkan password: ');
@@ -50,6 +51,7 @@ implementation
 			s: string;
 			u: User;
 		begin
+			u := userNul;
 			write('Masukkan username: ');
 			readln(s);
 			u := findUser(s);
