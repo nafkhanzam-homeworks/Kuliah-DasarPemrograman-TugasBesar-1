@@ -193,26 +193,25 @@ implementation
 		begin
 			l1 := data1.length;
 			l2 := data2.length;
-			a := 0;
-			b := 0;
-			i := 0;
-			while (a < l1) and (b < l2) do begin
+			a := 1;
+			b := 1;
+			i := 1;
+			while (a <= l1) and (b <= l2) do begin
 				if (data1.arr[a].judul < data2.arr[b].judul) then begin
 					data.arr[i] := data1.arr[a];
-					i += 1;
 					a += 1;
 				end else begin
 					data.arr[i] := data2.arr[b];
-					i += 1;
 					b += 1;
 				end;
+				i += 1;
 			end;
-			while (a < l1) do begin
+			while (a <= l1) do begin
 				data.arr[i] := data1.arr[a];
 				i += 1;
 				a += 1;
 			end;
-			while (b < l2) do begin
+			while (b <= l2) do begin
 				data.arr[i] := data2.arr[b];
 				i += 1;
 				b += 1;
@@ -224,8 +223,8 @@ implementation
 			l, i, half: integer;
 		begin
 			l := data.length;
-			half := l div 2;
 			if (l > 1) then begin
+				half := l div 2;
 				data1.length := half;
 				data2.length := l-half;
 				for i := 1 to half do

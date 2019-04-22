@@ -72,7 +72,7 @@ implementation
 			readln(s);
 			while not(isKategoriValid(s)) do begin
 				writeln('Kategori ', s, ' tidak valid');
-				write('Kategori: ', getKategoriString);
+				writeln('Kategori: ', getKategoriString);
 				write('Masukkan kategori: ');
 				readln(s);
 			end;
@@ -88,8 +88,10 @@ implementation
 			if res.length > 0 then begin
 				sortBukuData(res);
 				writeln('Hasil pencarian:');
-				for b in res.arr do
+				for i := 1 to res.length do begin
+					b := res.arr[i];
 					writeln(b.id, ' | ', b.judul, ' | ', b.author);
+				end;
 			end else
 				writeln('Tidak ada buku dalam kategori ini.')
 		end;
@@ -142,7 +144,7 @@ implementation
 			readln(b.kategori);
 			while not(isKategoriValid(b.kategori)) do begin
 				writeln('Kategori ', b.kategori, ' tidak valid');
-				write('Kategori: ', getKategoriString);
+				writeln('Kategori: ', getKategoriString);
 				write('Masukkan kategori buku: ');
 				readln(b.kategori);
 			end;
