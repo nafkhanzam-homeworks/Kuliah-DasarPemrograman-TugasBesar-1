@@ -1,14 +1,24 @@
+// Program utama perpustakaan
 program MainProgram;
 
+// Menggunakan berbagai macam unit buatan sendiri untuk menjalankan program ini
 uses 
 	Database, Util, UserHandler, FileHandler, BukuHandler;
 
+// Kamus
 var
+	// untuk menentukan kalau program masih berjalan (true) atau pengguna ingin keluar (false)
 	running: boolean;
-	role: integer; // 0 guest, 1 user, 2 admin
+	// Status si pengguna (0: tamu | 1: pengunjung | 2: admin)
+	role: integer;
+	// String input command dari pengguna
 	cmd: string;
+	// Array yang berisi string command yang hanya bisa digunakan oleh admin
 	adminCmds: array [1..7] of string = ('register', 'lihat_laporan', 'tambah_buku', 'tambah_jumlah_buku', 'riwayat', 'statistik', 'cari_anggota');
+	// Array yang berisi string command yang hanya bisa digunakan oleh pengunjung
 	userCmds: array [1..5] of string = ('caritahunterbit', 'pinjam_buku', 'kembalikan_buku', 'lapor_hilang', 'logout');
+
+// Digunakan untuk mengupdate role pengguna
 procedure updateRole;
 	begin
 		if loggedUser.role = ROLE_ADMIN then
@@ -18,6 +28,8 @@ procedure updateRole;
 		else
 			role := 0;
 	end;
+
+// Mengecek input command dari pengguna, apakah diperbolehkan atau tidak
 function checkCmd: boolean;
 	var
 		s: string;
@@ -39,11 +51,19 @@ function checkCmd: boolean;
 				end;
 			end;
 	end;
+
+// Digunakan untuk logout dari akun
 procedure logout;
 	begin
-		loggedUser := userNul;
-		writeln('Logout berhasil!');
+		if (isUserNull(loggedUser)) then
+			writeln('Anda belum login!');
+		else begin
+			loggedUser := userNul;
+			writeln('Logout berhasil!');
+		end;
 	end;
+
+// Digunakan untuk keluar dari program dengan mengkonfirmasi apakah pengguna ingin menyimpan file dahulu
 procedure exit;
 	begin
 		write('Apakah anda mau melakukan penyimpanan file yang sudah dilakukan (Y/N) ? ');
@@ -54,6 +74,8 @@ procedure exit;
 			running := false;
 		end;
 	end;
+
+// Digunakan untuk memberitahu si pengguna fitur-fitur program ini
 procedure help;
 	begin
 		writeln(' ');
@@ -80,6 +102,7 @@ procedure help;
 		writeln('exit : Menu untuk keluar dari program.');
 	end;
 
+// Algoritma program utama
 begin
 	running := true;
 	writeln('Selamat datang di Program Perpustakaan!');

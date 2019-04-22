@@ -1,3 +1,4 @@
+// unit Util mencakup berbagai macam fungsi dan prosedur yang berguna untuk jalannya program
 unit Util;
 
 interface
@@ -24,6 +25,7 @@ interface
 	function getKategoriString: string;
 
 implementation
+	// Fungsi hashCode mengeluarkan kode hash untuk password supaya tidak bisa dibaca orang lain
 	function hashCode(s: string): int64;
 		const
 			HASH_PRIME = 31;
@@ -36,6 +38,8 @@ implementation
 				res := res*HASH_PRIME + ord(s[i]);
 			hashCode := res;
 		end;
+
+	// Fungsi parseInt mengubah string integer menjadi integer
 	function parseInt(s: string): int64;
 		var
 			i: integer;
@@ -52,6 +56,8 @@ implementation
 			if neg then
 				parseInt := -parseInt;
 		end;
+
+	// Fungsi toString mengubah integer menjadi bentuk stringnya
 	function toString(i: integer): string;
 		var
 			neg: boolean;
@@ -71,10 +77,14 @@ implementation
 			if neg then
 				toString := '-' + toString;
 		end;
+
+	// Fungsi isKabisat mengeluarkan true jika input integer merupakan tahun kabisat
 	function isKabisat(y: integer): boolean;
 		begin
 			isKabisat := (y mod 4 = 0) and ((y mod 100 <> 0) or (y mod 400 = 0));
 		end;
+
+	// Fungsi isNewer mengeluarkan true jika input tanggal t1 lebih baru daripada tanggal t2
 	function isNewer(t1, t2: Tanggal): boolean;
 		begin
 			if (t1.y = t2.y) then
@@ -85,6 +95,8 @@ implementation
 			else
 				isNewer := t1.y > t2.y;
 		end;
+
+	// Fungsi dayInMonth mengeluarkan jumlah hari di bulan tertentu
 	function dayInMonth(m, y: integer): integer;
 		begin
 			if (m = 2) then
@@ -97,6 +109,8 @@ implementation
 			else
 				dayInMonth := 31;
 		end;
+
+	// Fungsi getTanggal mengubah string berformat tanggal menjadi variabel bertipe tanggal
 	function getTanggal(s: string): Tanggal;
 		var
 			res: Tanggal;
@@ -126,6 +140,8 @@ implementation
 			res.y := parseInt(read);
 			getTanggal := res;
 		end;
+
+	// Fungsi tanggalToString mengubah variabel bertype tanggal menjadi bentuk stringnya
 	function tanggalToString(t: Tanggal): string;
 		var
 			s: string;
@@ -138,6 +154,8 @@ implementation
 				s := '0' + s;
 			tanggalToString := tanggalToString + '/' + s + '/' + toString(t.y);
 		end;
+
+	// Fungsi hitungHari menghitung berapa hari selisih dari hari from dan hari next
 	function hitungHari(from, next: Tanggal): int64;
 		var
 			i, min: integer;
@@ -164,6 +182,8 @@ implementation
 					hitungHari := hitungHari + 365;
 			hitungHari := hitungHari - min;
 		end;
+
+	// Fungsi toCSV menambahi prefix dan suffix petik dua apabila string tersebut terdapat koma
 	function toCSV(s: string): string;
 		var
 			i: integer;
@@ -176,6 +196,8 @@ implementation
 					break;
 				end;
 		end;
+
+	// Fungsi fromCSV menghapus prefix dan suffix petik dua
 	function fromCSV(s: string): string;
 		var
 			i: integer;
@@ -187,6 +209,8 @@ implementation
 			end else
 				fromCSV := s;
 		end;
+
+	// Prosedur merge menggabungkan 2 DataBuku menjadi 1 DataBuku yang berurutan
 	procedure merge(data1, data2: DataBuku; var data: DataBuku);
 		var
 			l1, l2, a, b, i: integer;
@@ -217,6 +241,8 @@ implementation
 				b += 1;
 			end;
 		end;
+
+	// Prosedur sortBukuData digunakan untuk mengurutkan isi array di dalam databuku
 	procedure sortBukuData(var data: DataBuku);
 		var
 			data1, data2: DataBuku;
@@ -236,6 +262,8 @@ implementation
 				merge(data1, data2, data);
 			end;
 		end;
+
+	// Fungsi findBuku digunakan untuk mencari buku berdasarkan id buku tersebut
 	function findBuku(id: integer): Buku;
 		var
 			b: Buku;
@@ -246,6 +274,8 @@ implementation
 					break;
 				end;
 		end;
+
+	// Fungsi findPinjam digunakan untuk mencari pinjaman buku berdasarkan id buku dan username peminjam
 	function findPinjam(id: integer; username: string): Pinjam;
 		var
 			ph: Pinjam;
@@ -256,6 +286,8 @@ implementation
 					break;
 				end;
 		end;
+
+	// Fungsi findUser digunakan untuk mencari akun pengguna berdasarkan username pengguna
 	function findUser(username: string): User;
 		var
 			u: User;
@@ -266,6 +298,8 @@ implementation
 					break;
 				end;
 		end;
+
+	// Fungsi isKategoriValid mengeluarkan true jika string tersebut terdapat di kategori yang terdaftar
 	function isKategoriValid(s: string): boolean;
 		var
 			kat: string;
@@ -277,6 +311,8 @@ implementation
 					break;
 				end;
 		end;
+
+	// Fungsi get1WeekAfter mengeluarkan type tanggal 1 minggu setelah input tanggal t
 	function get1WeekAfter(t: Tanggal): Tanggal;
 		var
 			max: integer;
@@ -293,6 +329,8 @@ implementation
 			end;
 			get1WeekAfter := t;
 		end;
+
+	// Fungsi getKategoriID mengeluarkan index string kat dalam array validKategori
 	function getKategoriID(kat: string): integer;
 		var
 			i: integer;
@@ -305,14 +343,20 @@ implementation
 			else
 				getKategoriID := -1;
 		end;
+
+	// Fungsi isPengunjung mengeluarkan true apabila input user u merupakan Pengunjung
 	function isPengunjung(u: user): boolean;
 		begin
 			isPengunjung := (u.role = ROLE_PENGUNJUNG);
 		end;
+
+	// Fungsi isAdmin mengeluarkan true apabila input user u merupakan Admin
 	function isAdmin(u: user): boolean;
 		begin
 			isAdmin := (u.role = ROLE_ADMIN);
 		end;
+
+	// Fungsi columnCount mengeluarkan banyak kolom berdasarkan format csv
 	function columnCount(s: string): integer;
 		var
 			c: char;
@@ -325,6 +369,8 @@ implementation
 					if c = ',' then
 						columnCount += 1;
 		end;
+
+	// Fungsi getKategoriString mengeluarkan string daftar list semua kategori yang valid
 	function getKategoriString: string;
 		var
 			i: integer;
@@ -333,6 +379,8 @@ implementation
 			for i := 2 to length(validKategori) do
 				getKategoriString += ', ' + validKategori[i];
 		end;
+
+	// Prosedur writeBukuNotFound memberitahu pengguna bahwa id buku tidak ada
 	procedure writeBukuNotFound(id: integer);
 		begin
 			writeln('Buku dengan ID: ', id, ' tidak ditemukan');
