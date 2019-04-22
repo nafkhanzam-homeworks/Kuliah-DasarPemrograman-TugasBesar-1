@@ -56,7 +56,7 @@ function checkCmd: boolean;
 procedure logout;
 	begin
 		if (isUserNull(loggedUser)) then
-			writeln('Anda belum login!');
+			writeln('Anda belum login!')
 		else begin
 			loggedUser := userNul;
 			writeln('Logout berhasil!');
