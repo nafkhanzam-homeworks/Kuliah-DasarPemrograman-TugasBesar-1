@@ -22,7 +22,7 @@ implementation
 			writeln('Buku dengan ID: ', id, ' tidak ditemukan');
 		end;
 
-	// Prosedur kembalikan_buku digunakan untuk command kembalikan_buku
+	// Prosedur kembalikan_buku digunakan untuk mengembalikan buku
 	procedure kembalikan_buku;
 		var
 			k: Kembali;
@@ -66,7 +66,7 @@ implementation
 			end;
 		end;
 
-	// Prosedur cari digunakan untuk command cari
+	// Prosedur cari digunakan untuk mencari buku berdasarkan kategori
 	procedure cari;
 		var
 			i: integer;
@@ -102,7 +102,7 @@ implementation
 				writeln('Tidak ada buku dalam kategori ini.')
 		end;
 
-	// Prosedur pinjam_buku digunakan untuk command pinjam_buku
+	// Prosedur pinjam_buku digunakan untuk meminjam buku
 	procedure pinjam_buku;
 		var
 			p: Pinjam;
@@ -135,7 +135,7 @@ implementation
 			end;
 		end;
 
-	// Prosedur tambah_buku digunakan untuk command tambah_buku
+	// Prosedur tambah_buku digunakan untuk menambah buku baru ke sistem
 	procedure tambah_buku;
 		var
 			b: Buku;
@@ -164,7 +164,7 @@ implementation
 			writeln('Buku berhasil ditambahkan ke dalam sistem!');
 		end;
 
-	// Prosedur tambah_jumlah_buku digunakan untuk command tambah_jumlah_buku
+	// Prosedur tambah_jumlah_buku digunakan untuk menambahkan jumlah buku ke sistem
 	procedure tambah_jumlah_buku;
 		var
 			i: integer;
@@ -184,7 +184,7 @@ implementation
 			end;
 		end;
 
-	// Prosedur riwayat digunakan untuk command riwayat
+	// Prosedur riwayat digunakan untuk menampilkan riwayat peminjaman buku
 	procedure riwayat;
 		var
 			i: integer;
@@ -201,7 +201,7 @@ implementation
 			end;
 		end;
 
-	// Prosedur caritahunterbit digunakan untuk command caritahunterbit
+	// Prosedur caritahunterbit digunakan untuk mencari buku berdasarkan tahun terbit dengan kategori tertentu
 	procedure caritahunterbit;
 		var
 			thn, cnt, i: integer;
@@ -226,7 +226,7 @@ implementation
 				writeln('Tidak ada buku dalam kategori ini.');
 		end;
 
-	// Prosedur lapor_hilang digunakan untuk command lapor_hilang
+	// Prosedur lapor_hilang digunakan untuk melaporkan buku yang hilang
 	procedure lapor_hilang;
 		var
 			l: Laporan;
@@ -249,7 +249,7 @@ implementation
 			end;
 		end;
 
-	// Prosedur lihat_laporan digunakan untuk command lihat_laporan
+	// Prosedur lihat_laporan digunakan untuk melihat laporan buku yang hilang
 	procedure lihat_laporan;
 		var
 			l: Laporan;
@@ -262,7 +262,7 @@ implementation
 			end;
 		end;
 
-	// Prosedur statistik digunakan untuk command statistik
+	// Prosedur statistik digunakan untuk melihat statistik yang berkaitan dengan pengguna dan buku
 	procedure statistik;
 		var
 			adminCnt, pengunjungCnt, tot, i: integer;

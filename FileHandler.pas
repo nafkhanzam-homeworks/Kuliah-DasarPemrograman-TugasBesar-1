@@ -66,7 +66,7 @@ implementation
 			assign(fileLaporan, namaFileLaporan);
 		end;
 
-	// Prosedur save digunakan untuk command save
+	// Prosedur save digunakan untuk melakukan penyimpanan data
 	procedure save;
 		var
 			i: integer;
@@ -159,7 +159,7 @@ implementation
 					t.arr[i][j] := fromCSV(t.arr[i][j]);
 		end;
 
-	// Prosedur load digunakan untuk command load
+	// Prosedur load digunakan untuk load data
 	procedure load;
 		var
 			i: integer;

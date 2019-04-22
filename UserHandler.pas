@@ -10,7 +10,7 @@ interface
 	procedure cari_anggota;
 
 implementation
-	// Prosedur login digunakan untuk command login
+	// Prosedur login digunakan untuk mengakses program dengan memasukkan identitas dari user pengguna dan kata sandi guna mendapakan hak akses
 	procedure login;
 		var
 			username, password: string;
@@ -30,7 +30,7 @@ implementation
 			end;
 		end;
 
-	// Prosedur register digunakan untuk command register
+	// Prosedur register digunakan untuk mendaftarkan user pertama kali
 	procedure register;
 		var 
 			password: string;
@@ -50,7 +50,7 @@ implementation
 			writeln('Pengunjung ', res.nama, ' berhasil terdaftar sebagai user.');
 		end;
 
-	// Prosedur cari_anggota digunakan untuk command cari_anggota
+	// Prosedur cari_anggota digunakan untuk mencari data diri dari anggota perpustakaan
 	procedure cari_anggota;
 		var
 			s: string;

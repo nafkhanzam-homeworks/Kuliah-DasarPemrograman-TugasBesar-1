@@ -75,7 +75,7 @@ procedure exit;
 		end;
 	end;
 
-// Digunakan untuk memberitahu si pengguna fitur-fitur program ini
+// Digunakan untuk menunjukkan petunjuk serta command-command yang tersedia dalam program perpustakaan
 procedure help;
 	begin
 		writeln(' ');
