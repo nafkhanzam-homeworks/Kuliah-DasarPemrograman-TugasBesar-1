@@ -122,6 +122,7 @@ begin
 				'pinjam_buku': pinjam_buku;
 				'kembalikan_buku': kembalikan_buku;
 				'lapor_hilang': lapor_hilang;
+				'lihat_laporan': lihat_laporan;
 				'tambah_buku': tambah_buku;
 				'tambah_jumlah_buku': tambah_jumlah_buku;
 				'riwayat': riwayat;
