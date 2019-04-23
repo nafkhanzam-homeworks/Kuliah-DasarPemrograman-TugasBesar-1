@@ -78,8 +78,6 @@ implementation
 			for i := 1 to bukuData.length do begin
 				b := bukuData.arr[i];
 				writeln(fileBuku, b.id, ',', toCSV(b.judul), ',', toCSV(b.author), ',', b.jumlah, ',', b.tahun, ',', toCSV(b.kategori));
-				if (b.id = 51) then
-					writeln('jumlah:', b.jumlah);
 			end;
 			close(fileBuku);
 
@@ -167,6 +165,7 @@ implementation
 			inputFiles;
 
 			readData(fileBuku, columnCount(BUKU_HEADER));
+			bukuData.length := 0;
 			for i := 1 to t.row do begin
 				b.id := parseInt(t.arr[i][1]);
 				b.judul := t.arr[i][2];
@@ -178,6 +177,7 @@ implementation
 			end;
 
 			readData(fileUser, columnCount(USER_HEADER));
+			userData.length := 0;
 			for i := 1 to t.row do begin
 				u.nama := t.arr[i][1];
 				u.alamat := t.arr[i][2];
@@ -188,6 +188,7 @@ implementation
 			end;
 
 			readData(filePinjam, columnCount(PINJAM_HEADER));
+			pinjamData.length := 0;
 			for i := 1 to t.row do begin
 				p.username := t.arr[i][1];
 				p.id := parseInt(t.arr[i][2]);
@@ -198,6 +199,7 @@ implementation
 			end;
 
 			readData(fileKembali, columnCount(KEMBALI_HEADER));
+			kembaliData.length := 0;
 			for i := 1 to t.row do begin
 				k.username := t.arr[i][1];
 				k.id := parseInt(t.arr[i][2]);
@@ -206,6 +208,7 @@ implementation
 			end;
 
 			readData(fileLaporan, columnCount(LAPORAN_HEADER));
+			laporanData.length := 0;
 			for i := 1 to t.row do begin
 				h.username := t.arr[i][1];
 				h.id := parseInt(t.arr[i][2]);

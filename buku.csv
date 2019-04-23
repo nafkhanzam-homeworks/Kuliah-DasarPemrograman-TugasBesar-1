@@ -1,7 +1,7 @@
 ID_Buku,Judul_Buku,Author,Jumlah_Buku,Tahun_Penerbit,Kategori
 1,Pemrograman Database dengan Delphi7 Menggunakan Access ADO,Abdul Kadir,10,2004,programming
 2,ASnimasi Pendidikan Menggunakan Flash,Priyanto Hidayatullah,17,2011,programming
-3,Mudah dan Cepat Membuat Program Skripsi dengan VB 2012,Ir. Yuniar Supardi,5,2012,programming
+3,Mudah dan Cepat Membuat Program Skripsi dengan VB 2012,Ir. Yuniar Supardi,4,2012,programming
 4,the C++ Programming Language third edition,Bjarne Stroustrup,29,1997,programming
 5,Seluk Beluk Database Relasional (Edisi Kedua),Mark Whitehorn dan Bill Marklyn,13,2003,programming
 6,Membangun Media Ajar Online Untuk Orang Awam,Rulianto Kurniawan,28,2009,programming
@@ -49,3 +49,4 @@ ID_Buku,Judul_Buku,Author,Jumlah_Buku,Tahun_Penerbit,Kategori
 48,Sejarah Kebudayaan Islam di Indonesia,A. Hasjmy,15,1990,sejarah
 49,Paradigma Kebudayaan Islam,Faisal Ismail,23,1993,sejarah
 50,The World Of Islamic Civilization,Moh. Nur Hakim,16,2001,sejarah
+51,Cara Mengerjakan Tugas Besar,nafkhanzam,22,2019,programming

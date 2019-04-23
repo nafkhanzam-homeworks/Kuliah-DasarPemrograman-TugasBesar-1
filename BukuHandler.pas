@@ -196,7 +196,7 @@ implementation
 			writeln('Riwayat:');
 			for i := 1 to pinjamData.length do begin
 				p := pinjamData.arr[i];
-				if (p.username = s) and not(p.status) then
+				if (p.username = s) then
 					writeln(tanggalToString(p.tanggalKembali), ' | ', p.id, ' | ', findBuku(p.id).judul);
 			end;
 		end;
