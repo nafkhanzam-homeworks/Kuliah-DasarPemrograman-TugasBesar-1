@@ -1,3 +1,5 @@
+// Unit UserHandler digunakan untuk menjalankan
+// command yang berhubungan dengan manajemen akun pengguna
 unit UserHandler;
 
 interface

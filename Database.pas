@@ -1,3 +1,5 @@
+// Unit Database digunakan untuk menyimpan tipe-tipe
+// objek dan data array setiap tipe tersebut
 unit Database;
 
 interface

@@ -1,4 +1,5 @@
-// unit Util mencakup berbagai macam fungsi dan prosedur yang berguna untuk jalannya program
+// unit Util mencakup berbagai macam fungsi dan
+// prosedur yang berguna untuk jalannya program
 unit Util;
 
 interface
@@ -25,7 +26,8 @@ interface
 	function getKategoriString: string;
 
 implementation
-	// Fungsi hashCode mengeluarkan kode hash untuk password supaya tidak bisa dibaca orang lain
+	// Fungsi hashCode mengeluarkan kode hash
+	// untuk password supaya tidak bisa dibaca orang lain
 	function hashCode(s: string): int64;
 		const
 			HASH_PRIME = 31;
@@ -275,7 +277,8 @@ implementation
 				end;
 		end;
 
-	// Fungsi findPinjam digunakan untuk mencari pinjaman buku berdasarkan id buku dan username peminjam
+	// Fungsi findPinjam digunakan untuk mencari pinjaman buku
+	// berdasarkan id buku dan username peminjam
 	function findPinjam(id: integer; username: string): Pinjam;
 		var
 			ph: Pinjam;

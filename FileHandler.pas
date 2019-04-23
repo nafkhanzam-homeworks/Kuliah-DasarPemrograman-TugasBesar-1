@@ -1,3 +1,5 @@
+// Unit FileHandler digunakan untuk menjalankan
+// command yang berhubungan dengan file management
 unit FileHandler;
 
 interface
@@ -37,7 +39,8 @@ interface
 	procedure load;
 
 implementation
-	// Prosedur inputFiles digunakan untuk mengassign semua TextFile untuk dibaca/ditulis
+	// Prosedur inputFiles digunakan untuk mengassign
+	// semua TextFile untuk dibaca/ditulis
 	procedure inputFiles;
 		begin
 			write('Masukkan nama File Buku: ');
@@ -136,7 +139,8 @@ implementation
 					t.arr[t.row][col] += c;
 		end;
 
-	// Prosedur readData membaca TextFile dengan format csv dengan kolom tertentu kedalam table t
+	// Prosedur readData membaca TextFile dengan format csv
+	// dengan kolom tertentu kedalam table t
 	procedure readData(var f: TextFile; col: integer);
 		var
 			line: string;
