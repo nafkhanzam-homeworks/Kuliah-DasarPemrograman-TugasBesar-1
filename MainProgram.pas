@@ -1,4 +1,4 @@
-// Program utama perpustakaan
+{ Program utama perpustakaan yang mencakup beberapa unit }
 program MainProgram;
 
 // Menggunakan berbagai macam unit buatan sendiri untuk menjalankan program ini

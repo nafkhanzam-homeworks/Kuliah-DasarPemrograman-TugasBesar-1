@@ -1,3 +1,5 @@
+// Unit BukuHandler digunakan untuk menjalankan
+// command yang berhubungan dengan manajemen buku
 unit BukuHandler;
 
 interface
