@@ -2,9 +2,12 @@ unit Database;
 
 interface
 	const
-		NMAX = 1000; // Digunakan untuk menentukan maximal array data di program ini
-		ROLE_PENGUNJUNG = 'Pengunjung'; // String default untuk role pengunjung
-		ROLE_ADMIN = 'Admin'; // String default untuk role admin
+		// Digunakan untuk menentukan maximal array data di program ini
+		NMAX = 1000;
+		// String default untuk role pengunjung
+		ROLE_PENGUNJUNG = 'Pengunjung';
+		// String default untuk role admin
+		ROLE_ADMIN = 'Admin';
 
 	type
 		// Type tanggal untuk menyimpan data tanggal (hari, bulan, dan tahun)

@@ -189,15 +189,15 @@ implementation
 		var
 			i: integer;
 			s: string;
-			p: Pinjam;
+			k: Kembali;
 		begin
 			write('Masukkan username pengunjung: ');
 			readln(s);
 			writeln('Riwayat:');
 			for i := 1 to pinjamData.length do begin
-				p := pinjamData.arr[i];
-				if (p.username = s) then
-					writeln(tanggalToString(p.tanggalKembali), ' | ', p.id, ' | ', findBuku(p.id).judul);
+				k := kembaliData.arr[i];
+				if (k.username = s) then
+					writeln(tanggalToString(k.tanggal), ' | ', k.id, ' | ', findBuku(k.id).judul);
 			end;
 		end;
 
